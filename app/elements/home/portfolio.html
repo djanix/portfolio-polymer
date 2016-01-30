@@ -1,0 +1,77 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="poly-portfolio">
+  <template>
+    <style>
+      :host {
+        --paper-card-header-color: #fff;
+
+        --paper-card-header: {
+          background-color: #000;
+        }
+      }
+    </style>
+
+    <section class="portfolio" id="portfolio">
+      <h2 class="light-blue-text text-accent-2">Portfolio</h2>
+      <ul class="portfolioList"></ul>
+
+      <paper-card heading="Toyota - Une vraie bonne raison" image="images/portfolio/toyota_thumb.jpg"
+                  style="max-width: 400px;">
+        <div class="card-content">
+          Date: <strong>2015</strong><br/>
+          While working at: <strong><a href="http://u92.com">U92</a></strong>
+        </div>
+
+        <div class="card-actions light-blue-text text-darken-4">
+          <a href="http://unevraiebonneraison.ca">
+            <paper-button>Visit website</paper-button>
+          </a>
+        </div>
+      </paper-card>
+
+      <h3 class="light-blue-text text-accent-2">Other projects</h3>
+
+      <!--<paper-icon-button icon="arrow-forward"></paper-icon-button>-->
+
+      <div class="other-projects">
+        <a href="https://github.com/djanix/base-structure">
+          <paper-button raised class="white light-blue-text text-darken-4">
+            Base project boilerplate
+          </paper-button>
+        </a>
+
+        <a href="http://djanix.github.io/jquery.switcher/">
+          <paper-button raised class="white light-blue-text text-darken-4">
+            jQuery switcher
+          </paper-button>
+        </a>
+
+        <a href="./experiments/leap_motion/index.html">
+          <paper-button raised class="white light-blue-text text-darken-4">
+            Leap motion basic experiment
+          </paper-button>
+        </a>
+      </div>
+    </section>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'poly-portfolio'
+    });
+  </script>
+</dom-module>

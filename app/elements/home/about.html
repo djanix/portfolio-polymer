@@ -1,0 +1,46 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="poly-about">
+  <template>
+    <section class="aboutMe" id="aboutMe">
+      <h2 class="light-blue-text text-accent-2">About Me</h2>
+
+      <div class="row valign-wrapper">
+        <div class="col s12 m4 l3">
+          <img src="/images/design/me.jpg" class="circle responsive-img" alt="" height="286" width="286"/>
+        </div>
+
+        <div class="col s12 m8 l9">
+          <div class="flow-text">
+            <p>
+              Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently
+              working at U92 and I use creativity blended with technology to deliver cutting edge
+              work.
+            </p>
+
+            <paper-button class="amber darken-3 grey-text text-lighten-5">
+              <h3>
+                <a href="https://github.com/djanix">github.com/djanix</a>
+              </h3>
+            </paper-button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'poly-about'
+    });
+  </script>
+</dom-module>

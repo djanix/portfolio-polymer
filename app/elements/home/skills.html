@@ -1,0 +1,94 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="poly-skills">
+  <template>
+    <style>
+      :host {
+        --paper-button: {
+          display: block;
+          line-height: 2;
+          margin-bottom: 15px;
+          overflow: hidden;
+        }
+      }
+
+      .percent {
+        transform: translateX(-100%);
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+    </style>
+
+    <section class="skills" id="skills">
+      <div class="skillset">
+        <h2 class="light-blue-text text-accent-2">My Skills</h2>
+
+        <template is="dom-repeat" items="{{skills}}" on-dom-change="updateSkills">
+          <paper-button class="white light-blue-text text-darken-4">
+            <div class="detail clearfix">
+              <span class="left">{{item.name}}</span>
+              <span class="right">
+               <span>{{item.percent}}</span>%
+              </span>
+            </div>
+            <div class="percent light-blue lighten-4"></div>
+          </paper-button>
+        </template>
+      </div>
+
+      <h3 class="light-blue-text text-accent-2">Interests</h3>
+
+      <template is="dom-repeat" items="{{interests}}">
+        <div class="chip amber darken-3 grey-text text-lighten-5">{{item.name}}</div>
+      </template>
+    </section>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'poly-skills',
+      ready: function () {
+        this.skills = [
+          {name: 'responsive web design', percent: 98},
+          {name: 'javascript', percent: 90},
+          {name: 'photoshop', percent: 75},
+          {name: 'php', percent: 45}
+        ];
+
+        this.interests = [
+          {name: 'NodeJS'},
+          {name: 'React'},
+          {name: 'Angular'},
+          {name: 'Grunt / Gulp'},
+          {name: 'Git'},
+          {name: 'Arduino'}
+        ];
+      },
+      updateSkills: function () {
+        var _this = this;
+        var skills = $(this).find('paper-button');
+
+        _.each(skills, function (el, index) {
+          var $percentBar = $(el).find('.percent');
+          $percentBar.css({transform: 'translateX(-' + (100 - _this.skills[index].percent) + '%)'});
+        });
+      }
+    });
+  </script>
+</dom-module>
