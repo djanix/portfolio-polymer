@@ -10,32 +10,72 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
 <dom-module id="poly-about">
+  <style>
+    .container {
+      text-align: center;
+    }
+
+    .picture {
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .picture img {
+      border-radius: 50%;
+      height: auto;
+      max-width: 220px;
+      width: 100%;
+    }
+
+    .text p {
+      font-size: 24px;
+      font-weight: normal;
+      line-height: 1.4;
+      margin-top: 0;
+    }
+
+    paper-button {
+      background-color: var(--primary-color);
+      color: var(--primary-text-color);
+    }
+
+    @media (min-width: 1024px) {
+      .container {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        text-align: left;
+      }
+
+      .picture {
+        margin-bottom: 0;
+        margin-right: 30px;
+        width: 220px;
+      }
+
+      .text {
+        @apply(--layout-flex);
+      }
+    }
+  </style>
+
   <template>
-    <section class="aboutMe" id="aboutMe">
-      <h2 class="light-blue-text text-accent-2">About Me</h2>
-
-      <div class="row valign-wrapper">
-        <div class="col s12 m4 l3">
-          <img src="/images/design/me.jpg" class="circle responsive-img" alt="" height="286" width="286"/>
-        </div>
-
-        <div class="col s12 m8 l9">
-          <div class="flow-text">
-            <p>
-              Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently
-              working at U92 and I use creativity blended with technology to deliver cutting edge
-              work.
-            </p>
-
-            <paper-button class="amber darken-3 grey-text text-lighten-5">
-              <h3>
-                <a href="https://github.com/djanix">github.com/djanix</a>
-              </h3>
-            </paper-button>
-          </div>
-        </div>
+    <div class="container">
+      <div class="picture">
+        <img src="/images/design/me.jpg" alt="" height="286" width="286"/>
       </div>
-    </section>
+
+      <div class="text">
+        <p>
+          Welcome to my Portfolio. I am a web developer based in Montreal, Canada. I'm currently
+          working at U92 and I use creativity blended with technology to deliver cutting edge
+          work.
+        </p>
+
+        <a href="https://github.com/djanix">
+          <paper-button>see my github profile</paper-button>
+        </a>
+      </div>
+    </div>
   </template>
 
   <script>

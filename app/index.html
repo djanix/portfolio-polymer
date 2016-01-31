@@ -52,6 +52,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
+  <script>
+    window.Polymer = window.Polymer || {};
+    window.Polymer.dom = 'shadow';
+  </script>
+
   <!-- Because this project uses vulcanize this should be your only html import
        in this file. All other imports should go in elements.html -->
   <link rel="import" href="elements/elements.html">
@@ -83,79 +88,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <span id="browser-sync-binding"></span>
   <template is="dom-bind" id="app">
 
-    <paper-drawer-panel id="paperDrawerPanel">
-      <!-- Drawer Scroll Header Panel -->
-      <paper-scroll-header-panel drawer fixed>
+    <!-- Main Toolbar -->
+    <paper-scroll-header-panel condenses keep-condensed-header>
+      <paper-toolbar id="mainToolbar" class="tall">
+        <span class="space"></span>
 
-        <!-- Drawer Toolbar -->
-        <paper-toolbar id="drawerToolbar">
-          <span class="menu-name">Menu</span>
-        </paper-toolbar>
+        <poly-header></poly-header>
 
-        <!-- Drawer Content -->
-        <paper-menu attr-for-selected="data-route" selected="[[route]]">
-          <a data-route="home" href="#aboutMe">
-            <iron-icon icon="home"></iron-icon>
-            <span>About me</span>
-          </a>
-
-          <a data-route="users" href="#skills">
-            <iron-icon icon="info"></iron-icon>
-            <span>Skills</span>
-          </a>
-
-          <a data-route="contact" href="#portfolio">
-            <iron-icon icon="mail"></iron-icon>
-            <span>Portfolio</span>
-          </a>
-        </paper-menu>
-      </paper-scroll-header-panel>
-
-      <!-- Main Area -->
-      <paper-scroll-header-panel main id="headerPanelMain" condenses keep-condensed-header>
-        <!-- Main Toolbar -->
-        <paper-toolbar id="mainToolbar" class="tall">
-          <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
-
-          <span class="space"></span>
-
-          <!-- Toolbar icons -->
-          <paper-icon-button icon="refresh"></paper-icon-button>
-          <paper-icon-button icon="search"></paper-icon-button>
-
-          <!-- Application name -->
-          <div class="middle middle-container">
-            <div class="app-name">Janic Beauchemin</div>
-          </div>
-
-          <!-- Application sub title -->
-          <div class="bottom bottom-container">
-            <div class="bottom-title">Web Developer Portfolio</div>
-          </div>
-        </paper-toolbar>
-
-        <!-- Main Content -->
-        <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
-            <section data-route="home">
-              <paper-material elevation="1">
-                <poly-about></poly-about>
-              </paper-material>
-
-              <paper-material elevation="1">
-                <poly-skills></poly-skills>
-              </paper-material>
-
-              <paper-material elevation="1">
-                <poly-portfolio></poly-portfolio>
-              </paper-material>
-            </section>
-          </iron-pages>
+        <!-- Application name -->
+        <div class="middle middle-container">
+          <div class="app-name">Janic Beauchemin</div>
         </div>
-      </paper-scroll-header-panel>
 
-      <poly-footer></poly-footer>
-    </paper-drawer-panel>
+        <!-- Application sub title -->
+        <div class="bottom bottom-container">
+          <div class="bottom-title">Web Developer Portfolio</div>
+        </div>
+      </paper-toolbar>
+
+      <!-- Main Content -->
+      <div class="content">
+        <iron-pages attr-for-selected="data-route" selected="{{route}}">
+          <section data-route="home">
+            <h1>About me</h1>
+            <paper-material elevation="1">
+              <poly-about></poly-about>
+            </paper-material>
+
+            <paper-material elevation="1">
+              <poly-skills></poly-skills>
+            </paper-material>
+
+            <paper-material elevation="1">
+              <poly-portfolio></poly-portfolio>
+            </paper-material>
+          </section>
+        </iron-pages>
+      </div>
+    </paper-scroll-header-panel>
+
+
 
     <!-- Uncomment next block to enable Service Worker support (1/2) -->
     <!--
