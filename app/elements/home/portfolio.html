@@ -8,70 +8,97 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
 
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="poly-portfolio">
   <template>
+    <style include="shared-styles"></style>
+
     <style>
       :host {
-        --paper-card-header-color: #fff;
+        display: block;
+        margin: 20px 0 30px 0;
+      }
 
-        --paper-card-header: {
-          background-color: #000;
-        }
+      .other-projects a {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .other-projects paper-button {
+        background-color: var(--primary-color);
+        box-sizing: border-box;
+        color: var(--primary-text-color);
+        line-height: 2;
+        overflow: hidden;
       }
     </style>
 
-    <section class="portfolio" id="portfolio">
-      <h2 class="light-blue-text text-accent-2">Portfolio</h2>
-      <ul class="portfolioList"></ul>
+    <iron-ajax
+      id="ajaxProjects"
+      auto
+      handle-as="json"
+      last-response="{{projects}}"
+      url="/data/work.json">
+    </iron-ajax>
 
-      <paper-card heading="Toyota - Une vraie bonne raison" image="images/portfolio/toyota_thumb.jpg"
-                  style="max-width: 400px;">
-        <div class="card-content">
-          Date: <strong>2015</strong><br/>
-          While working at: <strong><a href="http://u92.com">U92</a></strong>
-        </div>
+    <h1>Portfolio</h1>
 
-        <div class="card-actions light-blue-text text-darken-4">
-          <a href="http://unevraiebonneraison.ca">
-            <paper-button>Visit website</paper-button>
-          </a>
-        </div>
+    <template is="dom-repeat" items="[[projects]]" as="project">
+      <paper-card
+        heading="[[project.title]]"
+        image="images/portfolio/[[project.images.thumb]]">
+
+          <div class="card-content">
+            Date: <strong>[[project.date]]</strong><br/>
+            While working at: <strong><a href$="[[project.company.link]]">[[project.company.name]]</a></strong>
+          </div>
+
+          <div>
+            <a href$="[[project.link]]">
+              <paper-button>Visit website</paper-button>
+            </a>
+          </div>
       </paper-card>
+    </template>
 
-      <h3 class="light-blue-text text-accent-2">Other projects</h3>
+    <h2>Other projects</h2>
 
-      <!--<paper-icon-button icon="arrow-forward"></paper-icon-button>-->
-
-      <div class="other-projects">
-        <a href="https://github.com/djanix/base-structure">
-          <paper-button raised class="white light-blue-text text-darken-4">
-            Base project boilerplate
-          </paper-button>
+    <div class="other-projects">
+      <template is="dom-repeat" items="[[otherProjects]]" as="project">
+        <a href$="[[project.link]]">
+          <paper-button>[[project.name]]</paper-button>
         </a>
+      </template>
+    </div>
 
-        <a href="http://djanix.github.io/jquery.switcher/">
-          <paper-button raised class="white light-blue-text text-darken-4">
-            jQuery switcher
-          </paper-button>
-        </a>
-
-        <a href="./experiments/leap_motion/index.html">
-          <paper-button raised class="white light-blue-text text-darken-4">
-            Leap motion basic experiment
-          </paper-button>
-        </a>
-      </div>
-    </section>
   </template>
 
   <script>
     Polymer({
-      is: 'poly-portfolio'
+      is: 'poly-portfolio',
+
+      properties: {
+
+        projects: {
+          type: Array,
+          value: function () { return []; }
+        },
+
+        otherProjects: {
+          type: Array,
+          value: [
+            {name: 'Base project boilerplate', link: 'https://github.com/djanix/base-structure'},
+            {name: 'jQuery switcher', link: 'http://djanix.github.io/jquery.switcher/'},
+            {name: 'Leap motion basic experiment', link: 'http://janicbeauchemin.com/experiments/leap_motion/'}
+          ]
+        }
+
+      }
     });
   </script>
 </dom-module>

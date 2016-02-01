@@ -8,21 +8,23 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
 
 <dom-module id="poly-header">
-  <style>
-    a {
-      color: #fff;
-      display: inline-block;
-      line-height: 24px;
-      margin-left: 15px;
-      vertical-align: middle;
-      text-decoration: none;
-    }
-  </style>
-
   <template>
-    <!-- Toolbar icons -->
+    <style include="shared-styles"></style>
+
+    <style>
+      a {
+        color: #fff;
+        display: inline-block;
+        line-height: 24px;
+        margin-left: 15px;
+        vertical-align: middle;
+        text-decoration: none;
+      }
+    </style>
+
     <a data-route="home" href="#aboutMe">
       <iron-icon icon="home"></iron-icon>
       <span>About me</span>

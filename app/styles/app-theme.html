@@ -36,15 +36,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     @apply(--layout-vertical);
   }
 
-  .space {
-    @apply(--layout-flex);
-  }
-
-  h1 {
-    margin: 0 0 0 10px;
-    font-weight: normal;;
-  }
-
   paper-scroll-header-panel {
     height: 100%;
   }
@@ -95,15 +86,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     @apply(--paper-font-subhead);
   }
 
-  paper-material {
-    border-radius: 2px;
-    height: 100%;
-    padding: 16px 0 16px 0;
-    width: calc(98.66% - 16px);
-    margin: 16px auto;
-    background: white;
-  }
-
   iron-pages {
     margin: 0 auto;
     max-width: 1200px;
@@ -118,35 +100,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   /* Small */
   @media (max-width: 600px) {
-
     #mainToolbar.tall .app-name {
       font-size: 24px;
       font-weight: 400;
     }
-
-    paper-material {
-      --menu-container-display: none;
-      width: calc(97.33% - 32px);
-      padding-left: 16px;
-      padding-right: 16px;
-    }
-
   }
 
   /* Tablet+ */
   @media (min-width: 601px) {
-
     iron-pages {
       padding: 48px 62px;
     }
-
-    paper-material {
-      width: calc(98% - 46px);
-      margin-bottom: 32px;
-      padding-left: 30px;
-      padding-right: 30px;
-    }
-
   }
 
   /* Material Design Adaptive Breakpoints */

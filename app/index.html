@@ -110,18 +110,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="content">
         <iron-pages attr-for-selected="data-route" selected="{{route}}">
           <section data-route="home">
-            <h1>About me</h1>
-            <paper-material elevation="1">
-              <poly-about></poly-about>
-            </paper-material>
-
-            <paper-material elevation="1">
-              <poly-skills></poly-skills>
-            </paper-material>
-
-            <paper-material elevation="1">
-              <poly-portfolio></poly-portfolio>
-            </paper-material>
+            <poly-about id="about"></poly-about>
+            <poly-skills id="skills"></poly-skills>
+            <poly-portfolio id="portfolio"></poly-portfolio>
           </section>
         </iron-pages>
       </div>

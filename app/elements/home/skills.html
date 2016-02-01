@@ -8,22 +8,51 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
 
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="poly-skills">
   <template>
+    <style include="shared-styles"></style>
+
     <style>
       :host {
         --paper-button: {
+          background-color: var(--primary-color);
+          box-sizing: border-box;
+          color: var(--primary-text-color);
+          cursor: inherit;
           display: block;
           line-height: 2;
-          margin-bottom: 15px;
+          margin: 0 0 15px 0;
           overflow: hidden;
         }
       }
 
+      .skill-container {
+        background-color: var(--paper-blue-50);
+        border-radius: 3px;
+      }
+
+      .skill-container:last-of-type paper-button {
+        margin-bottom: 0;
+      }
+
+      paper-button.inlined {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: 10px;
+      }
+
+      .detail {
+        color: var(--primary-text-color);
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+      }
+
       .percent {
+        transition: all 0.3s;
         transform: translateX(-100%);
         width: 100%;
         height: 100%;
@@ -35,59 +64,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <section class="skills" id="skills">
-      <div class="skillset">
-        <h2 class="light-blue-text text-accent-2">My Skills</h2>
+    <h1>My skills</h1>
 
-        <template is="dom-repeat" items="{{skills}}" on-dom-change="updateSkills">
-          <paper-button class="white light-blue-text text-darken-4">
-            <div class="detail clearfix">
-              <span class="left">{{item.name}}</span>
-              <span class="right">
-               <span>{{item.percent}}</span>%
-              </span>
+    <paper-material>
+      <template is="dom-repeat" items="[[skills]]" as="skill">
+        <div class="skill-container">
+          <paper-button style="width: [[skill.percent]]%;">
+            <div class="detail">
+              <div>[[skill.name]]</div>
+              <div>[[skill.percent]]%</div>
             </div>
-            <div class="percent light-blue lighten-4"></div>
+            <div class="percent" style="transform: translateX(-[[calculatePercent(skill.percent)]]%);"></div>
           </paper-button>
-        </template>
-      </div>
-
-      <h3 class="light-blue-text text-accent-2">Interests</h3>
-
-      <template is="dom-repeat" items="{{interests}}">
-        <div class="chip amber darken-3 grey-text text-lighten-5">{{item.name}}</div>
+        </div>
       </template>
-    </section>
+    </paper-material>
+
+    <h2>Interests</h2>
+
+    <template is="dom-repeat" items="[[interests]]" as="interest">
+      <paper-button class="inlined">{{interest.name}}</paper-button>
+    </template>
   </template>
 
   <script>
     Polymer({
       is: 'poly-skills',
-      ready: function () {
-        this.skills = [
-          {name: 'responsive web design', percent: 98},
-          {name: 'javascript', percent: 90},
-          {name: 'photoshop', percent: 75},
-          {name: 'php', percent: 45}
-        ];
 
-        this.interests = [
-          {name: 'NodeJS'},
-          {name: 'React'},
-          {name: 'Angular'},
-          {name: 'Grunt / Gulp'},
-          {name: 'Git'},
-          {name: 'Arduino'}
-        ];
+      properties: {
+
+        skills: {
+          type: Array,
+          value: [
+            {name: 'responsive web design', percent: 98},
+            {name: 'javascript', percent: 90},
+            {name: 'photoshop', percent: 75},
+            {name: 'php', percent: 45}
+          ]
+        },
+
+        interests: {
+          type: Array,
+          value: [
+            {name: 'NodeJS'},
+            {name: 'React'},
+            {name: 'Angular'},
+            {name: 'Grunt / Gulp'},
+            {name: 'Git'},
+            {name: 'Arduino'}
+          ]
+        }
+
       },
-      updateSkills: function () {
-        var _this = this;
-        var skills = $(this).find('paper-button');
 
-        _.each(skills, function (el, index) {
-          var $percentBar = $(el).find('.percent');
-          $percentBar.css({transform: 'translateX(-' + (100 - _this.skills[index].percent) + '%)'});
-        });
+      calculatePercent: function (percent) {
+        return 100 - percent;
       }
     });
   </script>

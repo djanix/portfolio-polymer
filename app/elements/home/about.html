@@ -8,57 +8,63 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
 
 <dom-module id="poly-about">
-  <style>
-    .container {
-      text-align: center;
-    }
+  <template>
+    <style include="shared-styles"></style>
 
-    .picture {
-      margin-bottom: 20px;
-      display: block;
-    }
-
-    .picture img {
-      border-radius: 50%;
-      height: auto;
-      max-width: 220px;
-      width: 100%;
-    }
-
-    .text p {
-      font-size: 24px;
-      font-weight: normal;
-      line-height: 1.4;
-      margin-top: 0;
-    }
-
-    paper-button {
-      background-color: var(--primary-color);
-      color: var(--primary-text-color);
-    }
-
-    @media (min-width: 1024px) {
+    <style>
       .container {
-        @apply(--layout-horizontal);
-        @apply(--layout-center);
-        text-align: left;
+        margin: 20px 0 30px 0;
+        text-align: center;
       }
 
       .picture {
-        margin-bottom: 0;
-        margin-right: 30px;
-        width: 220px;
+        margin-bottom: 20px;
+        display: block;
       }
 
-      .text {
-        @apply(--layout-flex);
+      .picture img {
+        border-radius: 50%;
+        height: auto;
+        max-width: 220px;
+        width: 100%;
       }
-    }
-  </style>
 
-  <template>
+      .text p {
+        font-size: 24px;
+        font-weight: normal;
+        line-height: 1.4;
+        margin-top: 0;
+      }
+
+      paper-button {
+        background-color: var(--primary-color);
+        color: var(--primary-text-color);
+      }
+
+      @media (min-width: 1024px) {
+        .container {
+          @apply(--layout-horizontal);
+          @apply(--layout-center);
+          text-align: left;
+        }
+
+        .picture {
+          margin-bottom: 0;
+          margin-right: 30px;
+          width: 220px;
+        }
+
+        .text {
+          @apply(--layout-flex);
+        }
+      }
+    </style>
+
+    <h1>About me</h1>
+
     <div class="container">
       <div class="picture">
         <img src="/images/design/me.jpg" alt="" height="286" width="286"/>
