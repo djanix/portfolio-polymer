@@ -22,6 +22,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
         margin: 20px 0 30px 0;
+
+        --paper-card-header-text: {
+          color: var(--primary-text-color);
+        };
       }
 
       .other-projects a {
@@ -36,6 +40,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         line-height: 2;
         overflow: hidden;
       }
+
+      .project-list {
+        @apply(--layout-horizontal);
+        @apply(--layout-justified);
+        @apply(--layout-wrap);
+      }
+
+      .project-list paper-card {
+        margin-bottom: 30px;
+        width: calc(33% - 20px);
+      }
+
+      .project-list h3 {
+        margin-top: 0;
+      }
+
+      .project-list a {
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      .project-list .cta {
+        border-top: 1px solid var(--paper-grey-100);
+      }
+
+      .project-list paper-button {
+        display: block;
+        margin: 0;
+      }
     </style>
 
     <iron-ajax
@@ -48,23 +81,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <h1>Portfolio</h1>
 
-    <template is="dom-repeat" items="[[projects]]" as="project">
-      <paper-card
-        heading="[[project.title]]"
-        image="images/portfolio/[[project.images.thumb]]">
-
+    <div class="project-list">
+      <template is="dom-repeat" items="[[projects]]" as="project">
+        <paper-card image="images/portfolio/[[project.images.thumb]]">
           <div class="card-content">
+            <h3>[[project.title]]</h3>
             Date: <strong>[[project.date]]</strong><br/>
             While working at: <strong><a href$="[[project.company.link]]">[[project.company.name]]</a></strong>
           </div>
 
-          <div>
+          <div class="cta">
             <a href$="[[project.link]]">
               <paper-button>Visit website</paper-button>
             </a>
           </div>
-      </paper-card>
-    </template>
+        </paper-card>
+      </template>
+    </div>
 
     <h2>Other projects</h2>
 
